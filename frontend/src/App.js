@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [ApodData, setApodData] = useState(null);
+
+  useEffect(() => {
+    fetch("/APOD")
+      .then(response => response.json())
+      .then(data => {
+        setApodData(data);
+      })
+      .catch(error => {
+        console.error("Error fetching APOD data:", error);
+      });
+    }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="APOD">
+        {ApodData && (
+        <div>
+          <h1>{ApodData.title}</h1>
+          <img className="APOD-image" src={ApodData.url} alt={ApodData.title} />
+          <p>{ApodData.explanation}</p>
+        </div>
+      )}
+      </div>
     </div>
   );
 }
