@@ -61,6 +61,28 @@ app.get("/APOD", async (req, res) => {
   }
 });
 
+app.get("/TLE", async (req, res) => {
+  try {
+    console.log("Received request for TLE data");
+
+    const dummySatelliteData = [
+      {
+        startLat: 0,
+        startLng: 0,
+        endLat: 47.6062,
+        endLng: -122.3321,
+        color: "orange",
+        altitude: 0.2
+      }
+    ];
+
+    res.json(dummySatelliteData);
+  } catch (error) {
+    console.error("Error fetching TLE data:", error);
+    return res.status(500).json({ error: "Failed to fetch TLE data" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
