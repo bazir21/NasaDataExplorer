@@ -11,6 +11,14 @@ function App() {
       setApodData(data);
     } catch (error) {
       console.error("Error fetching APOD data:", error);
+
+      try {
+        const defaultResponse = await fetch("defaultAPOD.json");
+        const defaultData = await defaultResponse.json();
+        setApodData(defaultData);
+      } catch (defaultError) {
+        console.error("Error fetching default APOD data:", defaultError);
+      }
     }
   };
 
