@@ -1,4 +1,6 @@
 import "./App.css";
+
+import Header from "./components/Header";
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -17,7 +19,7 @@ function App() {
         const defaultResponse = await fetch("defaultAPOD.json");
         const defaultData = await defaultResponse.json();
         setApodData(defaultData);
-        toast.error("Failed to fetch APOD data. Displaying default image.");
+        toast.error("Failed to fetch APOD data\nDisplaying default image.");
       } catch (defaultError) {
         console.error("Error fetching default APOD data:", defaultError);
       }
@@ -32,6 +34,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <Toaster duration={5000} position="bottom-center" reverseOrder={true} />
       <div className="APOD">
         {ApodData && (
