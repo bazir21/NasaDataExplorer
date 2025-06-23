@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+}
+
+.APOD {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.APOD-image {
+  max-width: 50%;
+  height: auto;
+}
+
+.APOD-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 2em;
+  margin: 10px 0;
+}
+
+.APOD-date {
+  padding: 5px;
+  align-items: flex-end;
+}
