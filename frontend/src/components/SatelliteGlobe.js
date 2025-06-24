@@ -4,25 +4,26 @@ import Globe from 'react-globe.gl';
 import { useEffect, useState } from 'react';
 
 function SatelliteGlobe() {
-  const [satelliteData, setSatelliteData] = useState([]);
+  const [orbitPath, setOrbitPath] = useState([]);
 
-  const fetchSatelliteData = async () => {
-      const response = await fetch('/TLE');
-      const data = await response.json();
-      setSatelliteData(data);
-    };
+  const fetchOrbitPathData = async () => {
+    const response = await fetch('/TLE');
+    const data = await response.json();
+    setOrbitPath(data);
+    console.log("Orbit Path Data:", data);
+  };
 
   useEffect(() => {
-    fetchSatelliteData();
+    fetchOrbitPathData();
   }, []);
 
   return (
     <div className="globe-container">
       <Globe
-        globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
-        arcsData={satelliteData}
-        arcColor="color"
-        arcAltitude="altitude"
+        globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-day.jpg"
+        pathsData={orbitPath}
+        pathColor={() => 'rgba(255, 0, 0, 1)'}
+        pathStroke={5}
       />
     </div>
   );
