@@ -8,23 +8,19 @@ function SatelliteGlobe() {
   const [globeWindowHeight, setGlobeWindowHeight] = useState(0);
   const [selectedSatellite, setSelectedSatellite] = useState("SWISSCUBE");
 
-  const fetchOrbitPathData = async () => {
-    const response = await fetch(`/TLE?satelliteName=${selectedSatellite}`);
-    const data = await response.json();
-
-    setOrbitPath(data);
-    console.log("Orbit Path Data:", data);
-  };
-
   useEffect(() => {
     setGlobeWindowHeight(window.innerHeight - 130);
   }, []);
 
   useEffect(() => {
-    fetchOrbitPathData();
-  }, []);
+    const fetchOrbitPathData = async () => {
+      const response = await fetch(`/TLE?satelliteName=${selectedSatellite}`);
+      const data = await response.json();
 
-  useEffect(() => {
+      setOrbitPath(data);
+      console.log("Orbit Path Data:", data);
+    };
+
     fetchOrbitPathData(selectedSatellite);
   }, [selectedSatellite]);
 
