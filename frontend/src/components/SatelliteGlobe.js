@@ -9,8 +9,8 @@ function SatelliteGlobe() {
   const fetchOrbitPathData = async () => {
     const response = await fetch('/TLE');
     const data = await response.json();
+
     setOrbitPath(data);
-    console.log("Orbit Path Data:", data);
   };
 
   useEffect(() => {
@@ -20,10 +20,28 @@ function SatelliteGlobe() {
   return (
     <div className="globe-container">
       <Globe
-        globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-day.jpg"
+        globeImageUrl="earth.jpg"
         pathsData={orbitPath}
+        pathPointAlt={alt => alt[2]}
         pathColor={() => 'rgba(255, 0, 0, 1)'}
         pathStroke={5}
+
+        pointsData={
+          orbitPath.length && orbitPath[0].length
+            ? [{
+              lat: orbitPath[0][0][0],
+              lng: orbitPath[0][0][1],
+              size: orbitPath[0][0][2],
+              color: 'blue',
+              label: 'Current Satellite Position'
+            }]
+            : []
+        }
+        pointLat="lat"
+        pointLng="lng"
+        pointAltitude="size"
+        pointColor="color"
+        pointLabel="label"
       />
     </div>
   );

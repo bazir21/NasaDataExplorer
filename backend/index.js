@@ -12,6 +12,8 @@ const API_KEY = process.env.API_KEY;
 const APOD_URL = "https://api.nasa.gov/planetary/apod";
 const CACHE_FILE = path.join(__dirname, "cache.json");
 
+const EARTH_RADIUS = 6371;
+
 function readCache() {
   try {
     const data = fs.readFileSync(CACHE_FILE, "utf8");
@@ -31,10 +33,10 @@ function writeCache(data) {
   }
 }
 
-function getOrbitPath(tleLine1, tleLine2, numPoints = 10) {
+function getOrbitPath(tleLine1, tleLine2, numPoints = 250) {
   const satrec = satellite.twoline2satrec(tleLine1, tleLine2);
   const startTime = new Date();
-  const timeForFullOrbit = (1440 / satrec.no) * 60;
+  const timeForFullOrbit = (2 * Math.PI) / satrec.no * 60;
   const step = timeForFullOrbit / numPoints;
 
   const segments = [];
@@ -58,7 +60,7 @@ function getOrbitPath(tleLine1, tleLine2, numPoints = 10) {
       if (segment.length > 0) segments.push(segment);
       segment = [];
     }
-    segment.push([latitude, longitude, altitude]);
+    segment.push([latitude, longitude, altitude / EARTH_RADIUS]);
     prevLength = longitude;
   }
   if (segment.length > 0) segments.push(segment);
@@ -101,8 +103,8 @@ app.get("/TLE", async (req, res) => {
   try {
     console.log("Received request for TLE data");
 
-    const tleLine1 = 	"1 35932U 09051B   25173.43443703  .00000728  00000+0  15728-3 0  9995";
-    const tleLine2 = "2 35932  98.4293  69.9099 0005602 249.6111 110.4488 14.61364324836599";
+    const tleLine1 = 	"1 25544U 98067A   25175.54783733  .00007984  00000+0  14659-3 0  9995";
+    const tleLine2 = "2 25544  51.6362 270.5968 0002158 283.7617  76.3131 15.50219065516302";
 
     const orbitPath = getOrbitPath(tleLine1, tleLine2);
     res.json(orbitPath);
