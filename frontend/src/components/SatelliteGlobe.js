@@ -31,7 +31,7 @@ function SatelliteGlobe() {
             ? [{
               lat: orbitPath[0][0][0],
               lng: orbitPath[0][0][1],
-              size: orbitPath[0][0][2],
+              size: orbitPath[0][0][2] + 0.1,
               color: 'blue',
               label: 'Current Satellite Position'
             }]

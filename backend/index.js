@@ -10,6 +10,7 @@ const satellite = require("satellite.js");
 const PORT = process.env.PORT || 3001;
 const API_KEY = process.env.API_KEY;
 const APOD_URL = "https://api.nasa.gov/planetary/apod";
+const TLE_URL = "https://tle.ivanstanojevic.me/api/tle/";
 const CACHE_FILE = path.join(__dirname, "cache.json");
 
 const EARTH_RADIUS = 6371;
@@ -103,10 +104,14 @@ app.get("/TLE", async (req, res) => {
   try {
     console.log("Received request for TLE data");
 
-    const tleLine1 = 	"1 25544U 98067A   25175.54783733  .00007984  00000+0  14659-3 0  9995";
-    const tleLine2 = "2 25544  51.6362 270.5968 0002158 283.7617  76.3131 15.50219065516302";
+    const response = await axios.get(TLE_URL, {
+        params: { search: req.query.satelliteName || "SWISSCUBE", }
+      });
 
-    const orbitPath = getOrbitPath(tleLine1, tleLine2);
+    const tleData = response.data.member?.[0];
+    const { line1, line2 } = tleData;
+
+    const orbitPath = getOrbitPath(line1, line2);
     res.json(orbitPath);
   } catch (error) {
     console.error("Error fetching TLE data:", error);
