@@ -1,3 +1,25 @@
 .App {
   text-align: center;
 }
+
+.Router-container {
+  display: flexbox;
+  text-align: center;
+  width: 100%;
+  color: black;
+}
+
+.nav-links {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: green;
+}
+
+.content-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}

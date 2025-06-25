@@ -9,16 +9,20 @@ function App() {
 
   return (
     <Router>
-      <Header />
-      <nav>
-        <Link to="/">APOD</Link>
-        <Link to="/satellite">Satellite Orbit</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={ <Apod /> } />
-        <Route path="/satellite" element={ <SatelliteGlobe /> } />
-        <Route path="*" element={ <div>404 Not Found</div> } />
-      </Routes>
+      <div className="Router-container">
+        <Header />
+        <nav className="nav-links">
+          <Link to="/">APOD</Link>
+          <Link to="/satellite">Satellite Orbit</Link>
+        </nav>
+        <div className="content-container">
+          <Routes>
+            <Route path="/" element={<Apod />} />
+            <Route path="/satellite" element={<SatelliteGlobe />} />
+            <Route path="*" element={<div>404 Not Found</div>} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }
