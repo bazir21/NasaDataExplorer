@@ -1,8 +1,15 @@
 .Header {
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: center;
-    background-color: blue;
+    grid-template-columns: 1fr auto 1fr;
+    background-color: black;
     color: white;
     min-height: 90px;
+}
+
+.logo {
+    justify-self: start;
+    width: 70px;
+    height: 55px;
+    margin-left: 20px;
 }
