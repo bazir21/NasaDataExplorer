@@ -1,21 +1,42 @@
 .App {
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .Router-container {
   display: flexbox;
   text-align: center;
   width: 100%;
-  color: black;
 }
 
 .nav-links {
-  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  background-color: green;
+  height: 40px;
+  background-color: #105bd8;
+}
+
+.nav-links ul {
+  list-style-type: none;
+  display: flex;
+  gap: 50px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: #105bd8;
+  color: #061f4a;
 }
 
 .content-container {

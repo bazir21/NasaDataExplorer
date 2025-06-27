@@ -1,13 +1,19 @@
 import "./Apod.css";
-
 import { useState, useEffect } from "react";
+import { StarField } from "starfield-react";
+import { MoonLoader } from "react-spinners";
 import toast, { Toaster } from "react-hot-toast";
 
 function Apod() {
   const [ApodData, setApodData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const today = new Date().toISOString().split("T")[0];
+  const [selectedDate, setSelectedDate] = useState(today);
 
   const fetchApodData = async (date = null) => {
     try {
+      setIsLoading(true);
+      setApodData(null);
       const response = await fetch(date ? `/APOD?date=${date}` : "/APOD");
       const data = await response.json();
       setApodData(data);
@@ -22,6 +28,8 @@ function Apod() {
       } catch (defaultError) {
         console.error("Error fetching default APOD data:", defaultError);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -29,22 +37,53 @@ function Apod() {
     fetchApodData();
   }, []);
 
-  const today = new Date().toISOString().split("T")[0];
-
   return (
     <div className="App">
       <Toaster duration={5000} position="bottom-center" reverseOrder={true} />
+      <StarField
+        className="starfield"
+        numStars={100}
+        speed={1}
+        fps={60}
+        depth={1000}
+        fade={true}
+        width={window.innerWidth}
+        height={window.innerHeight}
+      />
       <div className="APOD">
-        {ApodData && (
-        <div>
-          <h1 className="APOD-title">
-            {ApodData.title}
-            <input className="APOD-date" type="date" min="2014-01-01" max={today} onChange={(e) => fetchApodData(e.target.value)} />
-          </h1>
-          <img className="APOD-image" src={ApodData.url} alt={ApodData.title} />
-          <p>{ApodData.explanation}</p>
-        </div>
-      )}
+        {isLoading ? (
+          <div className="spinner-container">
+            <MoonLoader
+              color="white"
+              size={100}
+            />
+          </div>
+        ) : ApodData ? (
+          <div>
+            <h1 className="APOD-title">
+              {ApodData.title}
+            </h1>
+            <input
+              className="APOD-date"
+              type="date"
+              min="2014-01-01"
+              max={today}
+              defaultValue={selectedDate}
+              onChange={(e) => {
+                fetchApodData(e.target.value);
+                setSelectedDate(e.target.value)
+              }
+              }
+            />
+            <img
+              className="APOD-image"
+              src={ApodData.url}
+              alt={ApodData.title}
+              onLoad={() => setIsLoading(false)}
+            />
+            <p className="APOD-desc">{ApodData.explanation}</p>
+          </div>
+        ) : null}
       </div>
     </div>
   );

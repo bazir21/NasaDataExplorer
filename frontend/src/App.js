@@ -12,8 +12,10 @@ function App() {
       <div className="Router-container">
         <Header />
         <nav className="nav-links">
-          <Link to="/">APOD</Link>
-          <Link to="/satellite">Satellite Orbit</Link>
+          <ul>
+            <li><Link to="/">APOD</Link></li>
+            <li><Link to="/satellite">Satellite Orbit</Link></li>
+          </ul>
         </nav>
         <div className="content-container">
           <Routes>
