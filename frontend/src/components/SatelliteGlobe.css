@@ -5,14 +5,56 @@
   overflow: hidden;
 }
 
+.spinner-container {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+  transform: translate(-50%, calc(-50% + 65px));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.spinner-container.visible {
+  opacity: 1;
+}
+
 .satellite-selector {
   display: flex;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  /* top: calc(50% - 130px); */
+  top: 50%;
+  right: 50px;
+  transform: translateY(-50%);
   z-index: 10;
-  background-color: rgba(255, 255, 255, 0.8);
   gap: 10px;
   padding: 10px;
+  border: 1px solid whitesmoke;
   border-radius: 5px;
+  background-color: #061f4a;
+  flex-direction: column;
+}
+
+.satellite-selector button {
+  border: 1px solid whitesmoke;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background-color: whitesmoke;
+  color: black;
+}
+
+.satellite-selector button:hover {
+  transform: translateY(-2px);
+  background-color: #0b3d91;
+  color: #ffffff;
+  border-color: white;
+}
+
+.satellite-selector button:active {
+  transform: translateY(0);
 }

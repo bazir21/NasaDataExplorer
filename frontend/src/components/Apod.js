@@ -24,7 +24,7 @@ function Apod() {
         const defaultResponse = await fetch("defaultAPOD.json");
         const defaultData = await defaultResponse.json();
         setApodData(defaultData);
-        toast.error("Failed to fetch APOD data\nDisplaying default image.");
+        toast.error("Failed to fetch APOD data\nDisplaying default image");
       } catch (defaultError) {
         console.error("Error fetching default APOD data:", defaultError);
       }
@@ -39,7 +39,19 @@ function Apod() {
 
   return (
     <div className="App">
-      <Toaster duration={5000} position="bottom-center" reverseOrder={true} />
+      <Toaster
+        duration={5000}
+        position="bottom-center"
+        reverseOrder={true}
+        toastOptions={{
+          error: {
+            style: {
+              background: "#c62828",
+              color: "#fff"
+            }
+          }
+        }}
+      />
       <StarField
         className="starfield"
         numStars={100}
@@ -53,10 +65,7 @@ function Apod() {
       <div className="APOD">
         {isLoading ? (
           <div className="spinner-container">
-            <MoonLoader
-              color="white"
-              size={100}
-            />
+            <MoonLoader color="white" size={100} />
           </div>
         ) : ApodData ? (
           <div>
