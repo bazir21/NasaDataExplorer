@@ -1,6 +1,6 @@
 # Nasa Data Explorer
 
-This project provides a visualisation for both the Astronomy Picture of the Day (APOD) and satellite orbit paths from [TLEs](https://en.wikipedia.org/wiki/Two-line_element_set), through data provided by NASA APIs, which can be accessed [here](https://api.nasa.gov/).
+This project provides a visualisation for both the Astronomy Picture of the Day [(APOD)](https://en.wikipedia.org/wiki/Astronomy_Picture_of_the_Day) and satellite orbit paths from [TLEs](https://en.wikipedia.org/wiki/Two-line_element_set), through data provided by NASA APIs, which can be accessed [here](https://api.nasa.gov/).
 
 ## Example Screenshots
 ### APOD
