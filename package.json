@@ -1,0 +1,25 @@
+{
+  "name": "bounce_insights",
+  "version": "1.0.0",
+  "description": "This project provides a visualisation for both the Astronomy Picture of the Day (APOD)] and satellite orbit paths from TLEs, through data provided by NASA APIs, which can be accessed [here](https://api.nasa.gov/).",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd backend && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bazir21/NasaDataExplorer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bazir21/NasaDataExplorer/issues"
+  },
+  "homepage": "https://github.com/bazir21/NasaDataExplorer#readme"
+}
