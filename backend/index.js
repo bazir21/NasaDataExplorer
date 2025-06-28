@@ -73,10 +73,10 @@ app.get("/APOD", async (req, res) => {
   try {
     console.log("Received request for APOD");
 
-    const date = req.query.date || new Date().toISOString().split("T")[0];
+    const today = new Date().toISOString().split("T")[0]
+    const date = req.query.date || today;
     const cache = readCache();
-
-    if (cache[date]) {
+    if (cache[date] && date === cache[date].date) {
       console.log(`Returning cached data for ${date}`);
       return res.json(cache[date]);
     }
