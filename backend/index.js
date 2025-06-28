@@ -105,8 +105,8 @@ app.get("/TLE", async (req, res) => {
     console.log("Received request for TLE data");
 
     const response = await axios.get(TLE_URL, {
-        params: { search: req.query.satelliteName || "SWISSCUBE", }
-      });
+      params: { search: req.query.satelliteName || "SWISSCUBE", }
+    });
 
     const tleData = response.data.member?.[0];
     const { line1, line2 } = tleData;

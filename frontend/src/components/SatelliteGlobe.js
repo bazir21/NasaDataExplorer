@@ -65,7 +65,7 @@ function SatelliteGlobe() {
         }}
       />
       <div className="info-container">
-        <BsQuestionCircle className="info-icon"/>
+        <BsQuestionCircle className="info-icon" />
         <Tooltip
           anchorSelect=".info-icon"
           style={{ backgroundColor: "rgb(255, 255, 255)", color: "black" }}

@@ -55,10 +55,10 @@ function Apod() {
         }}
       />
       <div className="info-container">
-        <BsQuestionCircle className="info-icon"/>
+        <BsQuestionCircle className="info-icon" />
         <Tooltip
           anchorSelect=".info-icon"
-          style={{ backgroundColor: "rgb(255, 255, 255)", color: "black", maxWidth: 300}}
+          style={{ backgroundColor: "rgb(255, 255, 255)", color: "black", maxWidth: 300 }}
         >
           This page shows the Astronomy Picture of the Day (APOD) provided by NASA, with a date selector so you can check what the APOD was on a previous day
         </Tooltip>
