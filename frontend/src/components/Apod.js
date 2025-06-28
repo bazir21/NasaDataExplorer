@@ -2,7 +2,9 @@ import "./Apod.css";
 import { useState, useEffect } from "react";
 import { StarField } from "starfield-react";
 import { MoonLoader } from "react-spinners";
+import { BsQuestionCircle } from "react-icons/bs";
 import toast, { Toaster } from "react-hot-toast";
+import { Tooltip } from "react-tooltip";
 
 function Apod() {
   const [ApodData, setApodData] = useState(null);
@@ -52,6 +54,15 @@ function Apod() {
           }
         }}
       />
+      <div className="info-container">
+        <BsQuestionCircle className="info-icon"/>
+        <Tooltip
+          anchorSelect=".info-icon"
+          style={{ backgroundColor: "rgb(255, 255, 255)", color: "black", maxWidth: 300}}
+        >
+          This page shows the Astronomy Picture of the Day (APOD) provided by NASA, with a date selector so you can check what the APOD was on a previous day
+        </Tooltip>
+      </div>
       <StarField
         className="starfield"
         numStars={100}

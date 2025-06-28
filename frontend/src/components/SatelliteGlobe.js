@@ -2,8 +2,10 @@ import "./SatelliteGlobe.css";
 
 import { useEffect, useState } from "react";
 import { SyncLoader } from "react-spinners";
+import { BsQuestionCircle } from "react-icons/bs";
 import Globe from "react-globe.gl";
 import toast, { Toaster } from "react-hot-toast";
+import { Tooltip } from "react-tooltip";
 
 function SatelliteGlobe() {
   const [orbitPath, setOrbitPath] = useState([]);
@@ -38,6 +40,7 @@ function SatelliteGlobe() {
       } catch (e) {
         console.log("Error fetching orbit path data: ", e)
         toast.error("Failed to fetch orbit path data");
+        setOrbitPath([]);
       } finally {
         setTimeout(() => setIsLoading(false), 300);
       }
@@ -61,6 +64,15 @@ function SatelliteGlobe() {
           }
         }}
       />
+      <div className="info-container">
+        <BsQuestionCircle className="info-icon"/>
+        <Tooltip
+          anchorSelect=".info-icon"
+          style={{ backgroundColor: "rgb(255, 255, 255)", color: "black" }}
+        >
+          This visualisation shows the real-time position and orbit path of a certain satellite
+        </Tooltip>
+      </div>
       <Globe
         globeImageUrl="earth.jpg"
         height={globeWindowDimensions.height}
